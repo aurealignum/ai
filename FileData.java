@@ -1,11 +1,12 @@
 
+
 package textfile;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class FileData {
     public static void main (String[] args)throws IOException {
-        String file_name = "C:\\Users\\computer\\Desktop\\test.txt";
+        String file_name = "C:\\Users\\at018719\\Desktop\\test.txt";
         
         /*
         try{
@@ -31,33 +32,46 @@ public class FileData {
             ReadFile file = new ReadFile(file_name);
             String[] aryLines = file.OpenFile();
             int i = 0;
+            int isSame = 0;
             
             //scan through all of the file
             try {
+                int lines = file.readLines(); //changing lines to a local var so i can stop loop
+                
             	System.out.println(file.readLines());
             	System.out.println(aryLines.length);
-            	while (aryLines.length <= file.readLines()){
-            		if (aryLines[i].equalsIgnoreCase(response)){
-            			System.out.println(aryLines[i+1]);
-            		}
-            		System.out.println(i + aryLines[i] + ":" + response);
-            		i = i+2;
-            		
-            	}
-            	
+            	while (lines > aryLines.length){
+            		if (aryLines[i].equalsIgnoreCase("hi")){
+                            isSame = 1;
+                            System.out.println("true");
+            		} else {
+                            isSame = 2;
+                        }  
+                        //the while loop isnt getting here
+                        if (isSame == 1) {
+                            lines = lines * -1;
+                            System.out.println(aryLines[i+1]);
+                            System.out.println("first path");
+                        } else {
+                            i = i+2;
+                        }
+                        
+                        //end of while
+                    }
+                
+                    if (isSame == 2) {
+                        System.out.println("Sorry I dont know what that means, what is the response?");
+                        String proper_response = sc.next();
+                        data.writeToFile(response + proper_response); 
+                    }
+                
             } catch (ArrayIndexOutOfBoundsException a) {
-            	//System.out.println(a.getMessage());
+            	System.out.println("arrayindexoutofboundsexception");
             }
         } catch (IOException e) {
             System.out.println( e.getMessage());
         }
-        
-       
-        System.out.println("Sorry I dont know what that means, what is the response?");
-        String proper_response = sc.next();
-        data.writeToFile(response + proper_response); 
-        
-        
+
         sc.close();
         System.out.println("File written to");
     }
