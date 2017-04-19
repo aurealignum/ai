@@ -1,0 +1,28 @@
+/*
+* Formal Greeting
+* Austin Todd   
+* 4/19/2017
+* prompts user with his or her name including title and responds accordingly.  
+*/
+package formalgreeting_at;
+
+import java.util.Scanner;
+
+public class FormalGreeting_AT {
+
+    public static void main(String[] args) {
+        System.out.println("What is your title? ");
+        Scanner sc = new Scanner(System.in);
+        String title = sc.next();
+        CharSequence mr = "Mr.";
+        
+        if(title.contains(mr)) {
+            System.out.print("Hello sir");
+        } else if(title.contains("Mrs.") || title.contains("Miss.") || title.contains("Ms.")) {
+            String[] ar = title.split(".");
+            System.out.print("Hello " + ar[1]);
+        }
+        
+    }
+    
+}
